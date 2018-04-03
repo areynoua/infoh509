@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<bookshop
+  xmlns=""
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/ bookshop.xsd">
+  <departments>
+    <department name="scientific">
+      <displayName>scientific products</displayName>
+    </department>
+
+    <department name="leisure">
+      <displayName>leisure products</displayName>
+    </department>
+  </departments>
+
+  <catalogue>
+    <book genre="scientific">
+      <!-- required -->
+      <title>An Introduction to XML and Web Technologies</title>
+      <authors>
+        <author>Anders Møller</author>
+        <author>Michael Schwartzbach</author>
+      </authors><!-- xor a list of editors -->
+      <publisher>Addison Wesley</publisher>
+      <year>2006</year>
+
+      <!-- optional -->
+      <abstract>The evolution of the Worl Wide Web has been staggering. To support the ever increasing demands we make on the Web capabilities ther has been an explosion of technologies, protocols and standards which all promise[…]</abstract>
+      <edition>1</edition>
+      <isbn>0321269667</isbn>
+    </book>
+    <journal genre="scientific">
+      <!-- required -->
+      <title>Transactions on Database Systems</title>
+      <volume>10</volume>
+      <number>3</number>
+      <editors>
+        <editor>Chrisitan S. Jensen</editor>
+        <editor>Marcelo Arenas</editor>
+        <editor>Angela Bonifati</editor>
+        <editor>K. Selcuk Candan</editor>
+        <editor>Gao Cong</editor>
+      </editor><!-- xor a list of editors -->
+      <year>1985</year>
+
+      <articles>
+        <article>
+          <title>Implementation of Logical Query Languages for Databases</title>
+          <authors>
+            <author>Jeffrey D. Ullman</author>
+          </authors>
+          <pageRange>
+            <begin>289</begin>
+            <end>321</end>
+          </pageRange><!-- xor articleNumber -->
+        </article>
+        <article>
+          <title>Modeling Concepts for VLSI CAD Objects</title>
+          <authors>
+            <author>Don S. Batory</author>
+            <author>Won Kim</author>
+          </authors>
+          <pageRange>
+            <end>322</end>
+            <end>346</end>
+          </pageRange><!-- xor articleNumber -->
+        </article>
+      </articles>
+
+      <!-- optional -->
+      <publisher>ACM</publisher>
+      <impactFactor year="2014">41.567</impactFactor>
+    </journal>
+
+    <book genre="leisure">
+      <!-- required -->
+      <title>Alice's Adventure in Wonderland</title>
+      <authors>
+        <author>Lewis Carroll</author>
+      </authors>
+      <publisher>Penguin Group</publisher>
+      <year>1994</year>
+      <genre>literature</genre>
+
+      <!-- optional -->
+      <edition>1</edition>
+      <pageCount>152</pageCount>
+    </book>
+
+    <periodical genre="leisure">
+      <!-- required -->
+      <title>Easy drawing</title>
+      <price>5.95$</price>
+      <publisher>BPV Media SARL</publisher>
+    </periodical>
+  </catalogue>
+</bookshop>

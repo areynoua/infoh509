@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/"
+  xmlns="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+
+  <!-- follow guidlines from
+       https://www.medbiq.org/std_specs/techguidelines/xmldesignguidelines.pdf -->
+
+  <complexType name="LeisurePeriodical">
+
+</xsd:schema>

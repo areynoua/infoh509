@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <bookshop
-  xmlns=""
+  xmlns="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/ bookshop.xsd">
   <departments>
-    <department name="scientific">
+    <department id="scientific">
       <displayName>scientific products</displayName>
     </department>
 
-    <department name="leisure">
+    <department id="leisure">
       <displayName>leisure products</displayName>
     </department>
   </departments>
@@ -40,7 +40,7 @@
         <editor>Angela Bonifati</editor>
         <editor>K. Selcuk Candan</editor>
         <editor>Gao Cong</editor>
-      </editor><!-- xor a list of editors -->
+      </editors><!-- xor a list of editors -->
       <year>1985</year>
 
       <articles>

@@ -1,3 +1,5 @@
 *.default
 *~
 *.bak
+
+example_wo_comments.xml

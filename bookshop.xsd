@@ -8,7 +8,13 @@
   <!-- following guidlines from
        https://www.medbiq.org/std_specs/techguidelines/xmldesignguidelines.pdf -->
 
-  <!-- general -->
+  <!-- TODO annotations -->
+  <!-- TODO use xsd key/keyref instead of ID/IDREF -->
+  <!-- TODO consistent useage of named semantic types -->
+  <!-- TODO use the schema specialization where possible -->
+  <!-- FIXME DepartmentId does not make sens anymore -->
+
+  <!-- general simple types in alphabetical order -->
   <xsd:simpleType name="NonEmptyToken">
     <xsd:restriction base="xsd:token">
       <xsd:minLength value="1" />
@@ -21,27 +27,7 @@
     </xsd:restriction>
   </xsd:simpleType>
 
-  <!-- types -->
-  <xsd:complexType name="Bookshop">
-    <xsd:sequence>
-      <xsd:element name="departments" type="Departments" />
-      <xsd:element name="catalogue" type="Catalogue" />
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="Departments">
-    <xsd:sequence>
-      <xsd:element name="department" type="Department" maxOccurs="unbounded" />
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="Department">
-    <xsd:sequence>
-      <xsd:element name="displayName" type="xsd:string" />
-    </xsd:sequence>
-    <xsd:attribute name="id" type="DepartmentId" use="required" />
-  </xsd:complexType>
-
+  <!-- identifiers -->
   <xsd:simpleType name="DepartmentId">
     <xsd:restriction base="xsd:ID">
       <xsd:enumeration value="scientific" />
@@ -53,55 +39,36 @@
     <xsd:restriction base="xsd:IDREF" />
   </xsd:simpleType>
 
-  <xsd:complexType name="Catalogue">
-    <xsd:sequence>
-      <xsd:any processContents="lax" maxOccurs="unbounded" />
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="Product">
-    <xsd:sequence>
-      <xsd:element name="title" type="xsd:string" />
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="ScientificBook">
-    <xsd:complexContent>
-      <xsd:extension base="Product">
-        <xsd:sequence>
-          <xsd:choice>
-            <xsd:element name="authors" type="Authors" />
-            <xsd:element name="editors" type="Editors" />
-          </xsd:choice>
-          <xsd:element name="publisher" type="Publisher" />
-          <xsd:element name="year" type="Year" />
-          <xsd:element name="abstract" type="xsd:string" minOccurs="0" />
-          <xsd:element name="edition" type="xsd:string" minOccurs="0" />
-          <xsd:element name="ISBN" type="ISBN" minOccurs="0" />
-        </xsd:sequence>
-        <xsd:attribute name="genre" type="DepartmentIdRef" fixed="scientific" />
-      </xsd:extension>
-    </xsd:complexContent>
-  </xsd:complexType>
-
-  <xsd:complexType name="Authors">
-    <xsd:sequence>
-      <xsd:element name="author" type="Author" maxOccurs="unbounded" />
-    </xsd:sequence>
-  </xsd:complexType>
-
+  <!-- semantic simple types in alphabetical order -->
   <xsd:simpleType name="Author">
     <xsd:restriction base="NonEmptyToken" />
   </xsd:simpleType>
 
-  <xsd:complexType name="Editors">
-    <xsd:sequence>
-      <xsd:element name="editor" type="Editor" maxOccurs="unbounded" />
-    </xsd:sequence>
-  </xsd:complexType>
+  <xsd:simpleType name="Currency">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[A-Z]{3}" />
+    </xsd:restriction>
+  </xsd:simpleType>
 
   <xsd:simpleType name="Editor">
     <xsd:restriction base="NonEmptyToken" />
+  </xsd:simpleType>
+
+  <xsd:simpleType name="Genre">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="thriller"/>
+      <xsd:enumeration value="horror"/>
+      <xsd:enumeration value="sci/fi"/>
+      <xsd:enumeration value="romance"/>
+      <xsd:enumeration value="literature"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="ISBN">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="([0-9]{3}-?)?[0-9]-?[0-9]{4}-?[0-9]{4}-?[0-9]" />
+      <xsd:whiteSpace value="collapse"/>
+    </xsd:restriction>
   </xsd:simpleType>
 
   <xsd:simpleType name="Publisher">
@@ -112,31 +79,80 @@
     <xsd:restriction base="xsd:unsignedShort" />
   </xsd:simpleType>
 
-  <xsd:simpleType name="ISBN">
-    <xsd:restriction base="xsd:string">
-      <xsd:pattern value="([0-9]{3}-?)?[0-9]-?[0-9]{4}-?[0-9]{4}-?[0-9]" />
-      <xsd:whiteSpace value="collapse"/>
-    </xsd:restriction>
-  </xsd:simpleType>
+  <!-- complex types in depth first order -->
+  <xsd:complexType name="Bookshop">
+    <xsd:sequence>
+      <xsd:element name="scientificDepartment" type="ScientificDepartment" minOccurs="0" />
+      <xsd:element name="leisureDepartment" type="LeisureDepartment" minOccurs="0" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ScientificDepartment">
+    <xsd:sequence>
+      <!--<xsd:element name="name" type="DepartmentId" fixed="scientific" />-->
+      <xsd:element name="displayName" type="xsd:string" />
+      <xsd:element name="products" type="ScientificProducts" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="LeisureDepartment">
+    <xsd:sequence>
+      <!--<xsd:element name="name" type="DepartmentId" fixed="leisure" />-->
+      <xsd:element name="displayName" type="xsd:string" />
+      <xsd:element name="products" type="LeisureProducts" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ScientificProducts">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="book" type="ScientificBook" />
+      <xsd:element name="journal" type="ScientificJournal" />
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="ScientificBook">
+    <xsd:sequence>
+      <xsd:element name="title" type="xsd:string" />
+      <xsd:choice>
+        <xsd:element name="authors" type="Authors" />
+        <xsd:element name="editors" type="Editors" />
+      </xsd:choice>
+      <xsd:element name="publisher" type="Publisher" />
+      <xsd:element name="year" type="Year" />
+      <xsd:element name="abstract" type="xsd:string" minOccurs="0" />
+      <xsd:element name="edition" type="xsd:string" minOccurs="0" />
+      <xsd:element name="ISBN" type="ISBN" minOccurs="0" />
+    </xsd:sequence>
+    <xsd:attribute name="type" type="DepartmentIdRef" use="required" fixed="scientific" />
+  </xsd:complexType>
+
+  <xsd:complexType name="Authors">
+    <xsd:sequence>
+      <xsd:element name="author" type="Author" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="Editors">
+    <xsd:sequence>
+      <xsd:element name="editor" type="Editor" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
 
   <xsd:complexType name="ScientificJournal">
-    <xsd:complexContent>
-      <xsd:extension base="Product">
-        <xsd:sequence>
-          <xsd:element name="volume" type="xsd:nonNegativeInteger" />
-          <xsd:element name="number" type="xsd:positiveInteger" />
-          <xsd:choice>
-            <xsd:element name="authors" type="Authors" />
-            <xsd:element name="editors" type="Editors" />
-          </xsd:choice>
-          <xsd:element name="year" type="Year" />
-          <xsd:element name="publisher" type="Publisher" minOccurs="0" />
-          <xsd:element name="impactFactor" type="ImpactFactor" minOccurs="0" />
-          <xsd:element name="articles" type="Articles" />
-        </xsd:sequence>
-        <xsd:attribute name="genre" type="DepartmentIdRef" fixed="scientific" />
-      </xsd:extension>
-    </xsd:complexContent>
+    <xsd:sequence>
+      <xsd:element name="title" type="xsd:string" />
+      <xsd:element name="volume" type="xsd:nonNegativeInteger" />
+      <xsd:element name="number" type="xsd:positiveInteger" />
+      <xsd:choice>
+        <xsd:element name="authors" type="Authors" />
+        <xsd:element name="editors" type="Editors" />
+      </xsd:choice>
+      <xsd:element name="year" type="Year" />
+      <xsd:element name="publisher" type="Publisher" minOccurs="0" />
+      <xsd:element name="impactFactor" type="ImpactFactor" minOccurs="0" />
+      <xsd:element name="articles" type="Articles" />
+    </xsd:sequence>
+    <xsd:attribute name="type" type="DepartmentIdRef" fixed="scientific" />
   </xsd:complexType>
 
   <xsd:complexType name="Articles">
@@ -171,42 +187,33 @@
     </xsd:simpleContent>
   </xsd:complexType>
 
-  <xsd:complexType name="LeisureBook">
-    <xsd:complexContent>
-      <xsd:extension base="Product">
-        <xsd:sequence>
-          <xsd:element name="authors" type="Authors" />
-          <xsd:element name="publisher" type="Publisher" />
-          <xsd:element name="year" type="Year" />
-          <xsd:element name="genre" type="Genre" />
-          <xsd:element name="edition" type="xsd:string" minOccurs="0" />
-          <xsd:element name="pageCount" type="xsd:nonNegativeInteger" minOccurs="0" />
-        </xsd:sequence>
-        <xsd:attribute name="genre" type="DepartmentIdRef" fixed="leisure" />
-      </xsd:extension>
-    </xsd:complexContent>
+  <xsd:complexType name="LeisureProducts">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="book" type="LeisureBook" />
+      <xsd:element name="periodical" type="LeisurePeriodical" />
+    </xsd:choice>
   </xsd:complexType>
 
-  <xsd:simpleType name="Genre">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="thriller"/>
-      <xsd:enumeration value="horror"/>
-      <xsd:enumeration value="sci/fi"/>
-      <xsd:enumeration value="romance"/>
-      <xsd:enumeration value="literature"/>
-    </xsd:restriction>
-  </xsd:simpleType>
+  <xsd:complexType name="LeisureBook">
+    <xsd:sequence>
+      <xsd:element name="title" type="xsd:string" />
+      <xsd:element name="authors" type="Authors" />
+      <xsd:element name="publisher" type="Publisher" />
+      <xsd:element name="year" type="Year" />
+      <xsd:element name="edition" type="xsd:string" minOccurs="0" />
+      <xsd:element name="pageCount" type="xsd:nonNegativeInteger" minOccurs="0" />
+    </xsd:sequence>
+    <xsd:attribute name="type" type="DepartmentIdRef" use="required" fixed="leisure" />
+    <xsd:attribute name="genre" type="Genre" use="required" />
+  </xsd:complexType>
 
   <xsd:complexType name="LeisurePeriodical">
-    <xsd:complexContent>
-      <xsd:extension base="Product">
-        <xsd:sequence>
-          <xsd:element name="price" type="Price" />
-          <xsd:element name="publisher" type="Publisher" />
-        </xsd:sequence>
-        <xsd:attribute name="genre" type="DepartmentIdRef" fixed="leisure" />
-      </xsd:extension>
-    </xsd:complexContent>
+    <xsd:sequence>
+      <xsd:element name="title" type="xsd:string" />
+      <xsd:element name="price" type="Price" />
+      <xsd:element name="publisher" type="Publisher" />
+    </xsd:sequence>
+    <xsd:attribute name="type" type="DepartmentIdRef" fixed="leisure" />
   </xsd:complexType>
 
   <xsd:complexType name="Price">
@@ -216,12 +223,6 @@
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
-
-  <xsd:simpleType name="Currency">
-    <xsd:restriction base="xsd:string">
-      <xsd:pattern value="[A-Z]{3}" />
-    </xsd:restriction>
-  </xsd:simpleType>
 
   <!-- document -->
   <xsd:element name="bookshop" type="Bookshop">

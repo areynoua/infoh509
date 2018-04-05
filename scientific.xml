@@ -1,37 +1,24 @@
 <?xml version="1.0"?>
-<bookshop
-  xmlns="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/ bookshop.xsd">
-  <departments>
-    <department id="scientific">
-      <displayName>scientific products</displayName>
-    </department>
 
-    <department id="leisure">
-      <displayName>leisure products</displayName>
-    </department>
-  </departments>
-
-  <catalogue>
-    <book genre="scientific">
-      <!-- required -->
+  <products
+    xmlns="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/ bookshop.xsd">
+    <book type="scientific">
       <title>An Introduction to XML and Web Technologies</title>
       <authors>
         <author>Anders Møller</author>
         <author>Michael Schwartzbach</author>
-      </authors><!-- xor a list of editors -->
+      </authors>
       <publisher>Addison Wesley</publisher>
       <year>2006</year>
 
-      <!-- optional -->
       <abstract>The evolution of the Worl Wide Web has been staggering. To support the ever increasing demands we make on the Web capabilities ther has been an explosion of technologies, protocols and standards which all promise[…]</abstract>
       <edition>1</edition>
       <ISBN>0321269667</ISBN>
     </book>
 
-    <journal genre="scientific">
-      <!-- required -->
+    <journal type="scientific">
       <title>Transactions on Database Systems</title>
       <volume>10</volume>
       <number>3</number>
@@ -41,15 +28,12 @@
         <editor>Angela Bonifati</editor>
         <editor>K. Selcuk Candan</editor>
         <editor>Gao Cong</editor>
-      </editors><!-- xor a list of authors -->
+      </editors>
       <year>1985</year>
 
-
-      <!-- optional -->
       <publisher>ACM</publisher>
       <impactFactor year="2014">41.567</impactFactor>
 
-      <!-- required -->
       <articles>
         <article>
           <title>Implementation of Logical Query Languages for Databases</title>
@@ -59,7 +43,7 @@
           <pageRange>
             <start>289</start>
             <end>321</end>
-          </pageRange><!-- xor articleNumber -->
+          </pageRange>
         </article>
         <article>
           <title>Modeling Concepts for VLSI CAD Objects</title>
@@ -70,31 +54,8 @@
           <pageRange>
             <start>322</start>
             <end>346</end>
-          </pageRange><!-- xor articleNumber -->
+          </pageRange>
         </article>
       </articles>
     </journal>
-
-    <book genre="leisure">
-      <!-- required -->
-      <title>Alice's Adventure in Wonderland</title>
-      <authors>
-        <author>Lewis Carroll</author>
-      </authors>
-      <publisher>Penguin Group</publisher>
-      <year>1994</year>
-      <genre>literature</genre>
-
-      <!-- optional -->
-      <edition>1</edition>
-      <pageCount>152</pageCount>
-    </book>
-
-    <periodical genre="leisure">
-      <!-- required -->
-      <title>Easy drawing</title>
-      <price currency="USD">5.95</price>
-      <publisher>BPV Media SARL</publisher>
-    </periodical>
-  </catalogue>
-</bookshop>
+  </products>

@@ -29,6 +29,7 @@
       <edition>1</edition>
       <ISBN>0321269667</ISBN>
     </book>
+
     <journal genre="scientific">
       <!-- required -->
       <title>Transactions on Database Systems</title>
@@ -40,9 +41,15 @@
         <editor>Angela Bonifati</editor>
         <editor>K. Selcuk Candan</editor>
         <editor>Gao Cong</editor>
-      </editors><!-- xor a list of editors -->
+      </editors><!-- xor a list of authors -->
       <year>1985</year>
 
+
+      <!-- optional -->
+      <publisher>ACM</publisher>
+      <impactFactor year="2014">41.567</impactFactor>
+
+      <!-- required -->
       <articles>
         <article>
           <title>Implementation of Logical Query Languages for Databases</title>
@@ -50,7 +57,7 @@
             <author>Jeffrey D. Ullman</author>
           </authors>
           <pageRange>
-            <begin>289</begin>
+            <start>289</start>
             <end>321</end>
           </pageRange><!-- xor articleNumber -->
         </article>
@@ -61,15 +68,11 @@
             <author>Won Kim</author>
           </authors>
           <pageRange>
-            <end>322</end>
+            <start>322</start>
             <end>346</end>
           </pageRange><!-- xor articleNumber -->
         </article>
       </articles>
-
-      <!-- optional -->
-      <publisher>ACM</publisher>
-      <impactFactor year="2014">41.567</impactFactor>
     </journal>
 
     <book genre="leisure">
@@ -90,7 +93,7 @@
     <periodical genre="leisure">
       <!-- required -->
       <title>Easy drawing</title>
-      <price>5.95$</price>
+      <price currency="USD">5.95</price>
       <publisher>BPV Media SARL</publisher>
     </periodical>
   </catalogue>

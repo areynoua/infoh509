@@ -82,14 +82,14 @@
   <!-- complex types in depth first order -->
   <xsd:complexType name="Bookshop">
     <xsd:sequence>
-      <xsd:element name="scientificDepartment" type="ScientificDepartment" minOccurs="0" />
-      <xsd:element name="leisureDepartment" type="LeisureDepartment" minOccurs="0" />
+      <xsd:element name="department" type="ScientificDepartment" />
+      <xsd:element name="department" type="LeisureDepartment" />
     </xsd:sequence>
   </xsd:complexType>
 
   <xsd:complexType name="ScientificDepartment">
     <xsd:sequence>
-      <!--<xsd:element name="name" type="DepartmentId" fixed="scientific" />-->
+      <xsd:element name="name" type="DepartmentId" fixed="scientific" />
       <xsd:element name="displayName" type="xsd:string" />
       <xsd:element name="products" type="ScientificProducts" />
     </xsd:sequence>
@@ -97,7 +97,7 @@
 
   <xsd:complexType name="LeisureDepartment">
     <xsd:sequence>
-      <!--<xsd:element name="name" type="DepartmentId" fixed="leisure" />-->
+      <xsd:element name="name" type="DepartmentId" fixed="leisure" />
       <xsd:element name="displayName" type="xsd:string" />
       <xsd:element name="products" type="LeisureProducts" />
     </xsd:sequence>

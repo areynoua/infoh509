@@ -9,9 +9,7 @@
        https://www.medbiq.org/std_specs/techguidelines/xmldesignguidelines.pdf -->
   <!-- and from http://xml.coverpages.org/HP-StephensonSchemaBestPractices.pdf -->
 
-  <!-- TODO use xsd key/keyref instead of ID/IDREF -->
-  <!-- TODO consistent useage of named semantic types -->
-  <!-- TODO use the schema specialization where possible -->
+  <xsd:include schemaLocation="currencies.xsd" /><!-- ISO 4217 -->
 
   <!-- general simple types in alphabetical order -->
   <xsd:simpleType name="NonEmptyToken">
@@ -31,10 +29,13 @@
     <xsd:restriction base="NonEmptyToken" />
   </xsd:simpleType>
 
-  <xsd:simpleType name="Currency"><!-- ISO 4217 -->
-    <xsd:restriction base="xsd:string">
-      <xsd:pattern value="[A-Z]{3}" />
-    </xsd:restriction>
+
+  <xsd:simpleType name="DepartmentDisplayName">
+    <xsd:restriction base="xsd:string" />
+  </xsd:simpleType>
+
+  <xsd:simpleType name="DepartmentName">
+    <xsd:restriction base="xsd:token" />
   </xsd:simpleType>
 
   <xsd:simpleType name="Editor">
@@ -51,7 +52,9 @@
     </xsd:restriction>
   </xsd:simpleType>
 
-  <xsd:simpleType name="ISBN">
+  <xsd:simpleType name="ISBN"><!-- ISBN 10 or 13 with facultative hyphen at
+        usual places, checksum and uniqueness may not checked as it may lead to
+        problems (reality does not completely respect this properties) -->
     <xsd:restriction base="xsd:string">
       <xsd:pattern value="([0-9]{3}-?)?[0-9]-?[0-9]{4}-?[0-9]{4}-?[0-9]" />
       <xsd:whiteSpace value="collapse"/>
@@ -62,11 +65,16 @@
     <xsd:restriction base="NonEmptyToken" />
   </xsd:simpleType>
 
-  <xsd:simpleType name="Year">
-    <xsd:restriction base="xsd:unsignedShort" />
+  <xsd:simpleType name="Title"><!-- I suppose that an empty title is possible -->
+    <xsd:restriction base="xsd:string" />
   </xsd:simpleType>
 
-  <!-- complex types in depth first order -->
+  <xsd:simpleType name="Year"><!-- remembers that there is manuscript from B.C.
+        and thus we should accept negative numbers -->
+    <xsd:restriction base="xsd:short" />
+  </xsd:simpleType>
+
+  <!-- complex types in depth-first order -->
   <xsd:complexType name="Bookshop">
     <xsd:sequence>
       <xsd:element name="department" type="ScientificDepartment" />
@@ -76,18 +84,10 @@
 
   <xsd:complexType name="ScientificDepartment">
     <xsd:sequence>
-      <xsd:element name="displayName" type="xsd:string" />
+      <xsd:element name="displayName" type="DepartmentDisplayName" />
       <xsd:element name="products" type="ScientificProducts" />
     </xsd:sequence>
-    <xsd:attribute name="name" type="xsd:string" fixed="scientific" />
-  </xsd:complexType>
-
-  <xsd:complexType name="LeisureDepartment">
-    <xsd:sequence>
-      <xsd:element name="displayName" type="xsd:string" />
-      <xsd:element name="products" type="LeisureProducts" />
-    </xsd:sequence>
-    <xsd:attribute name="name" type="xsd:string" fixed="leisure" />
+    <xsd:attribute name="name" type="DepartmentName" fixed="scientific" />
   </xsd:complexType>
 
   <xsd:complexType name="ScientificProducts">
@@ -99,7 +99,7 @@
 
   <xsd:complexType name="ScientificBook">
     <xsd:sequence>
-      <xsd:element name="title" type="xsd:string" />
+      <xsd:element name="title" type="Title" />
       <xsd:choice>
         <xsd:element name="authors" type="Authors" />
         <xsd:element name="editors" type="Editors" />
@@ -126,7 +126,7 @@
 
   <xsd:complexType name="ScientificJournal">
     <xsd:sequence>
-      <xsd:element name="title" type="xsd:string" />
+      <xsd:element name="title" type="Title" />
       <xsd:element name="volume" type="xsd:nonNegativeInteger" />
       <xsd:element name="number" type="xsd:positiveInteger" />
       <xsd:choice>
@@ -148,7 +148,7 @@
 
   <xsd:complexType name="Article">
     <xsd:sequence>
-      <xsd:element name="title" type="xsd:string" />
+      <xsd:element name="title" type="Title" />
       <xsd:element name="authors" type="Authors" />
       <xsd:choice>
         <xsd:element name="pageRange" type="PageRange" />
@@ -162,6 +162,7 @@
       <xsd:element name="start" type="xsd:nonNegativeInteger" />
       <xsd:element name="end" type="xsd:nonNegativeInteger" />
     </xsd:sequence>
+    <!-- <xsd:assert test="@start <= @end"/> Require XML Schema 1.1 -->
   </xsd:complexType>
 
   <xsd:complexType name="ImpactFactor">
@@ -170,6 +171,14 @@
         <xsd:attribute name="year" type="Year" />
       </xsd:extension>
     </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="LeisureDepartment">
+    <xsd:sequence>
+      <xsd:element name="displayName" type="DepartmentDisplayName" />
+      <xsd:element name="products" type="LeisureProducts" />
+    </xsd:sequence>
+    <xsd:attribute name="name" type="DepartmentName" fixed="leisure" />
   </xsd:complexType>
 
   <xsd:complexType name="LeisureProducts">
@@ -209,6 +218,12 @@
 
   <!-- document -->
   <xsd:element name="bookshop" type="Bookshop">
+    <!-- this is for human reader and in case of future changes, as it is
+         already guaranteed for now -->
+    <xsd:unique name="departmentName">
+      <xsd:selector xpath="." />
+      <xsd:field xpath="@name" />
+    </xsd:unique>
   </xsd:element>
 
 </xsd:schema>

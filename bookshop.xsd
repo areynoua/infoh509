@@ -193,7 +193,7 @@
 
   <xsd:complexType name="LeisureBook">
     <xsd:sequence>
-      <xsd:element name="title" type="xsd:string" />
+      <xsd:element name="title" type="Title" />
       <xsd:element name="authors" type="Authors" />
       <xsd:element name="publisher" type="Publisher" />
       <xsd:element name="year" type="Year" />
@@ -205,7 +205,7 @@
 
   <xsd:complexType name="LeisurePeriodical">
     <xsd:sequence>
-      <xsd:element name="title" type="xsd:string" />
+      <xsd:element name="title" type="Title" />
       <xsd:element name="price" type="Price" />
       <xsd:element name="publisher" type="Publisher" />
     </xsd:sequence>

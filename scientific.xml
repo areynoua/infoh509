@@ -4,7 +4,7 @@
     xmlns="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/ bookshop.xsd">
-    <book type="scientific">
+    <book>
       <title>An Introduction to XML and Web Technologies</title>
       <authors>
         <author>Anders Møller</author>
@@ -18,7 +18,7 @@
       <ISBN>0321269667</ISBN>
     </book>
 
-    <journal type="scientific">
+    <journal>
       <title>Transactions on Database Systems</title>
       <volume>10</volume>
       <number>3</number>

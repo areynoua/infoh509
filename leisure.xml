@@ -4,7 +4,7 @@
     xmlns="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/ bookshop.xsd">
-    <book type="leisure" genre="literature">
+    <book genre="literature">
       <title>Alice's Adventure in Wonderland</title>
       <authors>
         <author>Lewis Carroll</author>
@@ -16,7 +16,7 @@
       <pageCount>152</pageCount>
     </book>
 
-    <periodical type="leisure">
+    <periodical>
       <title>Easy drawing</title>
       <price currency="USD">5.95</price>
       <publisher>BPV Media SARL</publisher>

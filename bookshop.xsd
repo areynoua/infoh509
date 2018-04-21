@@ -110,7 +110,6 @@
       <xsd:element name="edition" type="xsd:string" minOccurs="0" />
       <xsd:element name="ISBN" type="ISBN" minOccurs="0" />
     </xsd:sequence>
-    <xsd:attribute name="type" type="DepartmentIdRef" use="required" fixed="scientific" />
   </xsd:complexType>
 
   <xsd:complexType name="Authors">
@@ -139,7 +138,6 @@
       <xsd:element name="impactFactor" type="ImpactFactor" minOccurs="0" />
       <xsd:element name="articles" type="Articles" />
     </xsd:sequence>
-    <xsd:attribute name="type" type="DepartmentIdRef" fixed="scientific" />
   </xsd:complexType>
 
   <xsd:complexType name="Articles">
@@ -190,7 +188,6 @@
       <xsd:element name="edition" type="xsd:string" minOccurs="0" />
       <xsd:element name="pageCount" type="xsd:nonNegativeInteger" minOccurs="0" />
     </xsd:sequence>
-    <xsd:attribute name="type" type="DepartmentIdRef" use="required" fixed="leisure" />
     <xsd:attribute name="genre" type="Genre" use="required" />
   </xsd:complexType>
 
@@ -200,7 +197,6 @@
       <xsd:element name="price" type="Price" />
       <xsd:element name="publisher" type="Publisher" />
     </xsd:sequence>
-    <xsd:attribute name="type" type="DepartmentIdRef" fixed="leisure" />
   </xsd:complexType>
 
   <xsd:complexType name="Price">

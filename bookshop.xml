@@ -5,14 +5,12 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/ bookshop.xsd">
 
-  <department>
-    <name>scientific</name>
+  <department name="scientific">
     <displayName>scientific products</displayName>
     <xi:include href="scientific.xml" />
   </department>
 
-  <department>
-    <name>leisure</name>
+  <department name="leisure">
     <displayName>leisure products</displayName>
     <xi:include href="leisure.xml" />
   </department>

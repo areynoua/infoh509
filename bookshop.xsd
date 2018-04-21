@@ -7,12 +7,11 @@
 
   <!-- following guidlines from
        https://www.medbiq.org/std_specs/techguidelines/xmldesignguidelines.pdf -->
+  <!-- and from http://xml.coverpages.org/HP-StephensonSchemaBestPractices.pdf -->
 
-  <!-- TODO annotations -->
   <!-- TODO use xsd key/keyref instead of ID/IDREF -->
   <!-- TODO consistent useage of named semantic types -->
   <!-- TODO use the schema specialization where possible -->
-  <!-- FIXME DepartmentId does not make sens anymore -->
 
   <!-- general simple types in alphabetical order -->
   <xsd:simpleType name="NonEmptyToken">
@@ -25,18 +24,6 @@
     <xsd:restriction base="xsd:decimal">
       <xsd:minInclusive value="0" />
     </xsd:restriction>
-  </xsd:simpleType>
-
-  <!-- identifiers -->
-  <xsd:simpleType name="DepartmentId">
-    <xsd:restriction base="xsd:ID">
-      <xsd:enumeration value="scientific" />
-      <xsd:enumeration value="leisure" />
-    </xsd:restriction>
-  </xsd:simpleType>
-
-  <xsd:simpleType name="DepartmentIdRef">
-    <xsd:restriction base="xsd:IDREF" />
   </xsd:simpleType>
 
   <!-- semantic simple types in alphabetical order -->
@@ -89,18 +76,18 @@
 
   <xsd:complexType name="ScientificDepartment">
     <xsd:sequence>
-      <xsd:element name="name" type="DepartmentId" fixed="scientific" />
       <xsd:element name="displayName" type="xsd:string" />
       <xsd:element name="products" type="ScientificProducts" />
     </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" fixed="scientific" />
   </xsd:complexType>
 
   <xsd:complexType name="LeisureDepartment">
     <xsd:sequence>
-      <xsd:element name="name" type="DepartmentId" fixed="leisure" />
       <xsd:element name="displayName" type="xsd:string" />
       <xsd:element name="products" type="LeisureProducts" />
     </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" fixed="leisure" />
   </xsd:complexType>
 
   <xsd:complexType name="ScientificProducts">

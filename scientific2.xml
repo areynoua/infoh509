@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+  <products
+    xmlns="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/ bookshop.xsd">
+    <book type="scientific">
+      <title>An Introduction to XML and Web Technologies</title>
+      <authors>
+        <author>Anders Møller</author>
+        <author>Michael Schwartzbach</author>
+      </authors>
+      <publisher>Addison Wesley</publisher>
+      <year>2006</year>
+
+	<edition>1</edition>
+    </book>
+
+    <journal type="scientific">
+      <title>Dynamic Games and Applications</title>
+      <volume>8</volume>
+      <number>30</number>
+      <authors>
+        <author>Josef Hofbauer</author>
+      </authors>
+      <year>1996</year>
+
+
+      <articles>
+        <article>
+          <title>Minmax via Replicator Dynamics</title>
+          <authors>
+            <author>Josef Hofbauer</author>
+          </authors>
+          <articleNumber>109</articleNumber>
+        </article>
+       </articles>
+    </journal>
+  </products>

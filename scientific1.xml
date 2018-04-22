@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+  <products
+    xmlns="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/ bookshop.xsd">
+    <book type="scientific">
+      <title>Fundamentals of physics</title>
+      <authors>
+        <author>Jearl Walker</author>
+      </authors>
+      <publisher>Halliday and Resnick</publisher>
+      <year>2009</year>   
+    </book>
+
+    <journal type="scientific">
+      <title>Complex Analysis and Operator Theory</title>
+      <volume>8</volume>
+      <number>2</number>
+      <editors>
+        <editor>Josep Gascón</editor>
+        <editor>Luisa Ruiz Higueras</editor>
+        <editor>Marianna Bosch</editor>
+      </editors>
+      <year>2006</year>
+
+       <articles>
+        <article>
+          <title>Mathematical modelling</title>
+          <authors>
+            <author>Fco. Javier García</author>
+          </authors>
+          <pageRange>
+            <start>301</start>
+            <end>324</end>
+          </pageRange>
+        </article>
+      </articles>
+    </journal>
+  </products>

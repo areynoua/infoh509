@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<bookshop
+  xmlns="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/ bookshop.xsd">
+
+  <department name="scientific">
+    <displayName>scientific products</displayName>
+    <xi:include href="scientific1.xml" />
+  </department>
+
+  <department name="leisure">
+    <displayName>leisure products</displayName>
+    <xi:include href="leisure1.xml" />
+  </department>
+
+</bookshop>

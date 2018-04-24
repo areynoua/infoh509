@@ -4,7 +4,7 @@
     xmlns="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/ bookshop.xsd">
-    <book type="leisure" genre="literature">
+    <book genre="literature">
       <title>WHISPER</title>
       <authors>
         <author>Mark Batterson</author>
@@ -16,7 +16,7 @@
       <pageCount>304</pageCount>
     </book>
 
-    <periodical type="leisure">
+    <periodical>
       <title>Wizard of the North</title>
       <price currency="EUR">34.8</price>
       <publisher>People's Journal</publisher>

@@ -4,7 +4,7 @@
     xmlns="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://student.ulb.ac.be/~areynoua/infoh509/work1/bookshop/v1/ bookshop.xsd">
-    <book type="leisure" genre="literature">
+    <book genre="literature">
       <title>Lee Child</title>
       <authors>
         <author>Jack reacher</author>
@@ -14,7 +14,7 @@
 
     </book>
 
-    <periodical type="leisure">
+    <periodical>
       <title>Salsa Cosmopolitanism</title>
       <price currency="AFN">36</price>
       <publisher>Social Dance industry</publisher>
